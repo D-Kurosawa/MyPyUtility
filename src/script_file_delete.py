@@ -8,7 +8,7 @@ def main():
     path = os.getcwd().replace(os.sep, '/')
     print(f"右記ディレクト支配下にあるファイルを一括削除します : {path}")
 
-    if input_selector():
+    if input_selector(':: 実行しますか？ [Y/n]  >> '):
         file_delete(path)
         print('処理完了')
     else:
@@ -17,16 +17,17 @@ def main():
     print("=" * 80)
 
 
-def input_selector():
+def input_selector(msg='[Yes/No] >> '):
     """標準入力でYes or Noの入力を求めboolを返す
 
+    :type msg: str
     :rtype: bool
     """
     dic = {'y': True, 'n': False}
 
     while True:
         try:
-            result = dic[input('[Y]es/[N]o >> ').lower()[0]]
+            result = dic[input(msg).lower()[0]]
             break
         except KeyError:
             pass
